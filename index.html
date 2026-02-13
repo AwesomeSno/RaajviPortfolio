@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Raajvi Rajesh Raj • Creative Director</title>
+    <title>Raajvi • Fashion & Ad Designer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -39,14 +39,16 @@
             inset: 0;
             z-index: -1;
             background: #000;
+            overflow: hidden;
         }
 
         .mesh-sphere {
             position: absolute;
             border-radius: 50%;
             filter: blur(80px);
-            opacity: 0.3;
+            opacity: 0.35;
             mix-blend-mode: screen;
+            transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
             pointer-events: none;
             will-change: transform;
         }
@@ -63,7 +65,7 @@
             z-index: 50;
         }
 
-        /* --- LIQUID NAVIGATION DOCK (FIXED VISIBILITY) --- */
+        /* --- LIQUID NAVIGATION DOCK --- */
         .nav-dock-wrapper {
             position: fixed;
             bottom: max(24px, env(safe-area-inset-bottom));
@@ -76,13 +78,14 @@
             position: relative;
             display: flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
             padding: 6px;
             border-radius: 40px;
             border: 1px solid rgba(255, 255, 255, 0.15);
             gap: 6px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
 
         .goo-layer {
@@ -112,15 +115,16 @@
             justify-content: center;
             color: rgba(255, 255, 255, 0.4);
             z-index: 10;
-            transition: color 0.4s ease;
+            transition: color 0.4s ease, transform 0.2s ease;
         }
 
         .nav-item.active { color: #000; }
+        .nav-item:active { transform: scale(0.9); }
 
         /* --- KINETIC HERO --- */
         .hero-text {
-            font-size: clamp(3.5rem, 18vw, 13rem);
-            line-height: 0.8;
+            font-size: clamp(3.2rem, 16vw, 11rem);
+            line-height: 0.85;
             letter-spacing: -0.06em;
             font-weight: 700;
         }
@@ -130,14 +134,14 @@
             overflow: hidden;
             white-space: nowrap;
             display: flex;
-            margin-top: -10px;
+            margin-top: -5px;
         }
 
         .marquee-content {
             display: flex;
             animation: scroll-marquee 40s linear infinite;
             font-weight: 800;
-            font-size: clamp(3rem, 14vw, 16vw);
+            font-size: clamp(2.5rem, 12vw, 14vw);
             color: transparent;
             -webkit-text-stroke: 1px rgba(255, 255, 255, 0.08);
         }
@@ -163,15 +167,15 @@
         @media (min-width: 1024px) {
             .bento-card:hover {
                 background: rgba(255, 255, 255, 0.05);
-                transform: translateY(-5px);
+                transform: translateY(-8px);
                 border-color: rgba(255, 255, 255, 0.2);
             }
         }
 
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: translateY(20px);
+            transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
         }
         .reveal.active {
             opacity: 1;
@@ -180,11 +184,12 @@
 
         /* Responsive spacing for S10e */
         @media (max-width: 400px) {
-            .bento-card { padding: 20px; }
-            .hero-text { font-size: 3.5rem; }
+            .bento-card { padding: 18px; border-radius: 24px; }
+            .hero-text { font-size: 3rem; }
         }
 
         ::-webkit-scrollbar { display: none; }
+        * { scrollbar-width: none; -ms-overflow-style: none; }
     </style>
 </head>
 <body class="antialiased selection:bg-white selection:text-black">
@@ -212,20 +217,20 @@
     <div class="nav-dock-wrapper">
         <nav class="nav-dock">
             <div class="goo-layer"><div id="nav-pill" class="nav-pill"></div></div>
-            <a href="#home" class="nav-item active" data-index="0"><i data-lucide="home" size="20"></i></a>
-            <a href="#about" class="nav-item" data-index="1"><i data-lucide="user" size="20"></i></a>
-            <a href="#projects" class="nav-item" data-index="2"><i data-lucide="layers" size="20"></i></a>
-            <a href="#contact" class="nav-item" data-index="3"><i data-lucide="mail" size="20"></i></a>
+            <a href="#home" class="nav-item active" data-index="0" title="Home"><i data-lucide="home" size="20"></i></a>
+            <a href="#about" class="nav-item" data-index="1" title="About"><i data-lucide="user" size="20"></i></a>
+            <a href="#projects" class="nav-item" data-index="2" title="Work"><i data-lucide="scissors" size="20"></i></a>
+            <a href="#contact" class="nav-item" data-index="3" title="Contact"><i data-lucide="send" size="20"></i></a>
         </nav>
     </div>
 
     <main>
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex flex-col justify-center px-6 pt-10 overflow-hidden relative">
+        <!-- Hero Section (Tighter Layout, Corrected Content) -->
+        <section id="home" class="min-h-[85vh] flex flex-col justify-end pb-12 px-6 overflow-hidden relative">
             <div class="reveal max-w-7xl mx-auto w-full mb-4">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 mb-8">
-                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
-                    <span class="text-[9px] font-bold uppercase tracking-widest text-white/40">Open for Collaborations</span>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 mb-6">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#FF00E5] animate-pulse"></span>
+                    <span class="text-[9px] font-bold uppercase tracking-widest text-white/40">Available for Fashion & Ad Projects</span>
                 </div>
                 <h1 class="font-clash hero-text">
                     RAAJVI <br/>
@@ -235,93 +240,110 @@
 
             <div class="marquee-container font-clash">
                 <div class="marquee-content">
-                    <span>• VISUAL ARCHITECT • DIGITAL NARRATIVE • ARTS STREAM •&nbsp;</span>
-                    <span>• VISUAL ARCHITECT • DIGITAL NARRATIVE • ARTS STREAM •&nbsp;</span>
+                    <span>• FASHION DESIGN • AD CREATIVE • CANVA EXPERT • VIDEO EDITOR •&nbsp;</span>
+                    <span>• FASHION DESIGN • AD CREATIVE • CANVA EXPERT • VIDEO EDITOR •&nbsp;</span>
                 </div>
             </div>
 
-            <div class="reveal mt-16 max-w-7xl mx-auto w-full flex items-center gap-4">
+            <div class="reveal mt-12 max-w-7xl mx-auto w-full flex items-center gap-4">
                 <div class="w-10 h-px bg-white/20"></div>
-                <p class="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em]">Blending Literature & Digital Art</p>
+                <p class="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em]">Crafting Visual Identities & Apparel</p>
             </div>
         </section>
 
         <!-- Bento Grid Section -->
-        <section id="about" class="py-24 md:py-48 px-6 max-w-7xl mx-auto">
+        <section id="about" class="py-20 md:py-32 px-6 max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
                 
-                <!-- Card 1: Main Bio (Restored Content) -->
+                <!-- Card 1: Main Bio -->
                 <div class="md:col-span-8 reveal">
                     <div class="bento-card h-full flex flex-col justify-between">
                         <div>
                             <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 mb-8">
-                                <i data-lucide="user" class="text-white"></i>
+                                <i data-lucide="sparkles" class="text-white"></i>
                             </div>
-                            <h2 class="font-clash text-4xl md:text-6xl font-semibold mb-6">Hi, I'm Raajvi.</h2>
+                            <h2 class="font-clash text-4xl md:text-6xl font-semibold mb-6">Creative Soul.</h2>
                             <p class="text-lg md:text-2xl text-white/50 leading-relaxed font-light">
-                                A <span id="age-val">16</span>-year-old creative from Mumbai. I blend the structured world of 12th-grade Arts with the limitless potential of digital design. Designing the space between Literature and Digital Art.
+                                I'm Raajvi, a professional <span class="text-white font-medium">Canva Expert</span> and <span class="text-white font-medium">Video Editor</span> based in Mumbai. Currently in my 12th year of Arts, I spend my time designing viral ad campaigns and conceptualizing original clothing fashion designs.
                             </p>
                         </div>
                         <div class="mt-12 flex items-center gap-6">
-                            <a href="#contact" class="text-xs font-bold uppercase tracking-widest border-b-2 border-indigo-500 pb-1">Contact Me</a>
-                            <a href="#projects" class="text-xs font-bold uppercase tracking-widest text-white/30">See Work</a>
+                            <a href="#projects" class="text-xs font-bold uppercase tracking-widest border-b-2 border-[#FF00E5] pb-1">View Portfolio</a>
+                            <span class="text-[10px] font-bold text-white/20 uppercase">Mumbai Based</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 2: Location/Mumbai (Restored Content) -->
+                <!-- Card 2: Visual Impact -->
                 <div class="md:col-span-4 reveal" style="transition-delay: 100ms">
                     <div class="bento-card relative h-full min-h-[300px] flex flex-col items-center justify-center text-center group">
-                        <div class="absolute inset-0 grayscale opacity-20 bg-[url('https://images.unsplash.com/photo-1566552881560-0be862a7c445?q=80&w=800')] bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"></div>
+                        <div class="absolute inset-0 grayscale opacity-10 bg-[url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800')] bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"></div>
                         <div class="relative z-10">
-                            <i data-lucide="map-pin" class="mx-auto mb-4 text-white/40"></i>
-                            <h3 class="text-3xl font-bold font-clash">Mumbai</h3>
-                            <p class="text-[10px] uppercase tracking-[0.4em] text-white/30 mt-2">Base Operations</p>
+                            <i data-lucide="megaphone" class="mx-auto mb-4 text-[#FF00E5]" size="32"></i>
+                            <h3 class="text-2xl font-bold font-clash">Ads that Convert</h3>
+                            <p class="text-[10px] uppercase tracking-[0.4em] text-white/30 mt-2">Visual Strategy</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 3: Education (Restored Content) -->
-                <div class="md:col-span-5 reveal" style="transition-delay: 200ms">
-                    <div class="bento-card h-full">
-                        <div class="flex items-center gap-4 mb-10">
-                            <i data-lucide="graduation-cap" class="text-indigo-500"></i>
-                            <h3 class="font-clash text-xl font-bold">Education</h3>
-                        </div>
-                        <div class="space-y-10 relative border-l border-white/10 pl-8 ml-3">
-                            <div class="relative">
-                                <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-white shadow-[0_0_15px_#fff]"></div>
-                                <span class="text-[9px] font-bold text-indigo-400 uppercase tracking-widest block mb-1">PRESENT</span>
-                                <h4 class="font-bold text-white text-lg">12th Standard</h4>
-                                <p class="text-white/40 text-sm">SK Somaiya College • Arts</p>
-                            </div>
-                            <div class="opacity-40">
-                                <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-white/20"></div>
-                                <span class="text-[9px] font-bold text-white/40 uppercase tracking-widest block mb-1">2024</span>
-                                <h4 class="font-bold text-white text-lg">Secondary School</h4>
-                                <p class="text-white/40 text-sm">Foundation Studies</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 4: Arsenal/Skills (Restored Content) -->
-                <div class="md:col-span-7 reveal" style="transition-delay: 300ms">
+                <!-- Card 3: Arsenal (Updated Skills) -->
+                <div class="md:col-span-7 reveal" style="transition-delay: 200ms">
                     <div class="bento-card h-full">
                         <div class="flex items-center gap-4 mb-8">
-                            <i data-lucide="cpu" class="text-indigo-500"></i>
-                            <h3 class="font-clash text-xl font-bold">Arsenal</h3>
+                            <i data-lucide="layers" class="text-[#FF00E5]"></i>
+                            <h3 class="font-clash text-xl font-bold">The Toolkit</h3>
                         </div>
-                        <div class="flex flex-wrap gap-3">
-                            <!-- Restored every specific skill from original -->
-                            <span class="px-4 py-2 rounded-xl bg-white/5 border border-white/5 text-xs font-medium hover:border-white/20 transition-all">Creative Writing</span>
-                            <span class="px-4 py-2 rounded-xl bg-white/5 border border-white/5 text-xs font-medium hover:border-white/20 transition-all">Visual Arts</span>
-                            <span class="px-4 py-2 rounded-xl bg-white/5 border border-white/5 text-xs font-medium hover:border-white/20 transition-all">Critical Thinking</span>
-                            <span class="px-4 py-2 rounded-xl bg-white/5 border border-white/5 text-xs font-medium hover:border-white/20 transition-all">Canva Pro</span>
-                            <span class="px-4 py-2 rounded-xl bg-white/5 border border-white/5 text-xs font-medium hover:border-white/20 transition-all">Presentation</span>
-                            <span class="px-4 py-2 rounded-xl bg-white/5 border border-white/5 text-xs font-medium hover:border-white/20 transition-all">Figma (Learning)</span>
-                            <span class="px-4 py-2 rounded-xl bg-white/5 border border-white/5 text-xs font-medium hover:border-white/20 transition-all">Digital Storytelling</span>
-                            <span class="px-4 py-2 rounded-xl bg-white/5 border border-white/5 text-xs font-medium hover:border-white/20 transition-all">Social Media</span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-[9px] font-bold uppercase tracking-[0.3em] text-white/20 mb-4">Software</h4>
+                                <ul class="space-y-3">
+                                    <li class="flex items-center gap-2 text-sm text-white/70 font-medium">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-[#FF00E5]"></div> Canva (Pro Expert)
+                                    </li>
+                                    <li class="flex items-center gap-2 text-sm text-white/70 font-medium">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-[#FF00E5]"></div> CapCut / Video Editing
+                                    </li>
+                                    <li class="flex items-center gap-2 text-sm text-white/70 font-medium">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-[#FF00E5]"></div> Social Media Assets
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-[9px] font-bold uppercase tracking-[0.3em] text-white/20 mb-4">Core Craft</h4>
+                                <ul class="space-y-3">
+                                    <li class="flex items-center gap-2 text-sm text-white/70 font-medium">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-indigo-500"></div> Clothing Fashion Design
+                                    </li>
+                                    <li class="flex items-center gap-2 text-sm text-white/70 font-medium">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-indigo-500"></div> Ad Concept Creation
+                                    </li>
+                                    <li class="flex items-center gap-2 text-sm text-white/70 font-medium">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-indigo-500"></div> Artistic Direction
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Education -->
+                <div class="md:col-span-5 reveal" style="transition-delay: 300ms">
+                    <div class="bento-card h-full">
+                        <div class="flex items-center gap-4 mb-8">
+                            <i data-lucide="graduation-cap" class="text-indigo-500"></i>
+                            <h3 class="font-clash text-xl font-bold">Academic</h3>
+                        </div>
+                        <div class="space-y-6 relative border-l border-white/10 pl-6 ml-3">
+                            <div>
+                                <span class="text-[9px] font-bold text-[#FF00E5] uppercase tracking-widest block mb-1">In Progress</span>
+                                <h4 class="font-bold text-white">SK Somaiya College</h4>
+                                <p class="text-white/40 text-xs">12th Standard • Arts Stream</p>
+                            </div>
+                            <div class="opacity-40">
+                                <span class="text-[9px] font-bold text-white/40 uppercase tracking-widest block mb-1">2024</span>
+                                <h4 class="font-bold text-white">Secondary Grad</h4>
+                                <p class="text-white/40 text-xs">Mumbai, India</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -329,84 +351,81 @@
             </div>
         </section>
 
-        <!-- Projects Section (Restored Specific Projects) -->
-        <section id="projects" class="py-24 md:py-48 px-6 max-w-7xl mx-auto">
-            <div class="reveal flex items-center gap-6 mb-20">
-                <h2 class="font-clash text-5xl md:text-8xl font-bold">WORK</h2>
-                <div class="flex-grow h-px bg-white/10 mx-6"></div>
-                <span class="text-white/20 font-clash text-2xl tracking-tighter">001 - 003</span>
+        <!-- Projects Section (Updated Categories) -->
+        <section id="projects" class="py-20 md:py-32 px-6 max-w-7xl mx-auto">
+            <div class="reveal flex items-center gap-6 mb-16">
+                <h2 class="font-clash text-5xl md:text-8xl font-bold tracking-tight uppercase">CREATIONS</h2>
+                <div class="flex-grow h-px bg-white/10"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Project 1: Ethereal -->
-                <div class="reveal bento-card p-4 group cursor-pointer">
-                    <div class="aspect-[3/4] overflow-hidden rounded-2xl mb-6">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1: Fashion -->
+                <div class="reveal bento-card p-6 group cursor-pointer overflow-hidden">
+                    <div class="aspect-video overflow-hidden rounded-2xl mb-8">
+                        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=800" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105">
                     </div>
-                    <div class="px-2">
-                        <span class="text-[9px] font-bold text-indigo-400 uppercase tracking-widest">VISUAL ART</span>
-                        <h3 class="text-3xl font-clash font-bold mt-2">Ethereal</h3>
-                    </div>
-                </div>
-                <!-- Project 2: City Noir -->
-                <div class="reveal bento-card p-4 group cursor-pointer" style="transition-delay: 150ms">
-                    <div class="aspect-[3/4] overflow-hidden rounded-2xl mb-6">
-                        <img src="https://images.unsplash.com/photo-1493514789931-586cb221d7a7?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105">
-                    </div>
-                    <div class="px-2">
-                        <span class="text-[9px] font-bold text-indigo-400 uppercase tracking-widest">WRITING</span>
-                        <h3 class="text-3xl font-clash font-bold mt-2">City Noir</h3>
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <span class="text-[9px] font-bold text-[#FF00E5] uppercase tracking-widest">Fashion Design</span>
+                            <h3 class="text-3xl font-clash font-bold mt-2">Avant-Garde Collection</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                            <i data-lucide="arrow-up-right" size="20"></i>
+                        </div>
                     </div>
                 </div>
-                <!-- Project 3: Prism -->
-                <div class="reveal bento-card p-4 group cursor-pointer" style="transition-delay: 300ms">
-                    <div class="aspect-[3/4] overflow-hidden rounded-2xl mb-6">
-                        <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105">
+
+                <!-- Project 2: Ad Design -->
+                <div class="reveal bento-card p-6 group cursor-pointer overflow-hidden" style="transition-delay: 150ms">
+                    <div class="aspect-video overflow-hidden rounded-2xl mb-8">
+                        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=800" class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105">
                     </div>
-                    <div class="px-2">
-                        <span class="text-[9px] font-bold text-indigo-400 uppercase tracking-widest">DESIGN</span>
-                        <h3 class="text-3xl font-clash font-bold mt-2">Prism</h3>
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <span class="text-[9px] font-bold text-indigo-500 uppercase tracking-widest">Canva Ad Creative</span>
+                            <h3 class="text-3xl font-clash font-bold mt-2">High-Convert Ad Series</h3>
+                        </div>
+                        <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                            <i data-lucide="arrow-up-right" size="20"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Footer / Contact (Restored Content) -->
-        <section id="contact" class="min-h-screen flex flex-col justify-center items-center text-center px-6 relative">
+        <!-- Contact Section -->
+        <section id="contact" class="min-h-[80vh] flex flex-col justify-center items-center text-center px-6 relative">
             <div class="reveal">
-                <p class="text-[10px] uppercase tracking-[0.5em] text-white/30 mb-12">Connections</p>
-                <h2 class="font-clash text-6xl md:text-[11vw] font-bold leading-none mb-16 tracking-tighter">
-                    CREATE <br/> <span class="text-white/10 hover:text-white transition-all cursor-pointer">WITH ME</span>
+                <p class="text-[9px] uppercase tracking-[0.5em] text-white/30 mb-12">New Business</p>
+                <h2 class="font-clash text-6xl md:text-[9vw] font-bold leading-none mb-16 tracking-tighter">
+                    DESIGN <br/> <span class="text-white/10 hover:text-white transition-all cursor-pointer">WITH ME</span>
                 </h2>
                 <a href="mailto:hello@raajvi.com" class="text-3xl md:text-5xl border-b border-white/10 hover:border-white transition-all pb-3 font-light block tracking-tight">hello@raajvi.com</a>
             </div>
 
             <div class="absolute bottom-10 w-full max-w-7xl px-8 flex flex-col md:flex-row justify-between items-center text-[9px] font-bold uppercase tracking-[0.3em] text-white/10">
                 <p>© 2025 RAAJVI RAJESH RAJ</p>
-                <div class="flex gap-10 mt-6 md:mt-0">
-                    <a href="#" class="hover:text-white transition-colors"><i data-lucide="instagram" size="16"></i></a>
-                    <a href="#" class="hover:text-white transition-colors"><i data-lucide="linkedin" size="16"></i></a>
-                    <a href="#" class="hover:text-white transition-colors"><i data-lucide="globe" size="16"></i></a>
+                <div class="flex gap-8 mt-6 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">Instagram</a>
+                    <a href="#" class="hover:text-white transition-colors">Behance</a>
+                    <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
                 </div>
             </div>
         </section>
     </main>
 
     <script>
+        // Initialize Icons
         lucide.createIcons();
 
-        // 1. Interactive Coordinates (Mouse & Touch)
-        let mX = 0, mY = 0;
-        let cX = 0, cY = 0;
-        
+        // 1. Interactive Fluid Background Logic
         const spheres = [
-            { el: document.getElementById('sphere-1'), mult: 0.05 },
-            { el: document.getElementById('sphere-2'), mult: -0.07 },
-            { el: document.getElementById('sphere-3'), mult: 0.04 }
+            { el: document.getElementById('sphere-1'), mult: 0.04 },
+            { el: document.getElementById('sphere-2'), mult: -0.06 },
+            { el: document.getElementById('sphere-3'), mult: 0.03 }
         ];
 
-        const handleInput = (x, y) => {
-            mX = x; mY = y;
+        const handleInteraction = (x, y) => {
             spheres.forEach(s => {
                 const tx = (x - window.innerWidth / 2) * s.mult;
                 const ty = (y - window.innerHeight / 2) * s.mult;
@@ -414,15 +433,16 @@
             });
         };
 
-        window.addEventListener('mousemove', e => handleInput(e.clientX, e.clientY));
-        window.addEventListener('touchmove', e => handleInput(e.touches[0].clientX, e.touches[0].clientY));
+        window.addEventListener('mousemove', e => handleInteraction(e.clientX, e.clientY));
+        window.addEventListener('touchmove', e => handleInteraction(e.touches[0].clientX, e.touches[0].clientY));
 
-        // 2. Navigation Logic
+        // 2. Navigation Logic (Liquid Gooey)
         const navPill = document.getElementById('nav-pill');
         const navItems = document.querySelectorAll('.nav-item');
         
         const updatePill = (index) => {
-            const size = window.innerWidth <= 640 ? 50 : 56;
+            const isMobile = window.innerWidth <= 640;
+            const size = isMobile ? 50 : 56;
             const gap = 6;
             const pos = index * (size + gap);
             navPill.style.transform = `translateX(${pos}px)`;
@@ -439,8 +459,8 @@
         });
 
         // 3. Scroll Spy
-        const sections = ['home', 'about', 'projects', 'contact'];
         window.addEventListener('scroll', () => {
+            const sections = ['home', 'about', 'projects', 'contact'];
             let activeIdx = 0;
             sections.forEach((id, i) => {
                 const sec = document.getElementById(id);
@@ -449,7 +469,7 @@
             updatePill(activeIdx);
         });
 
-        // 4. Reveal Animation
+        // 4. Reveal Observer
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('active');
@@ -457,608 +477,24 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        // 5. Dynamic Age
-        const birth = new Date('2008-03-20');
-        const age = Math.floor((new Date() - birth) / (365.25 * 24 * 60 * 60 * 1000));
-        document.getElementById('age-val').innerText = age;
-        
-        // Initial setup
+        // 5. Bento Card Interactive Lighting
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+                card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+            });
+            card.addEventListener('touchmove', e => {
+                const rect = card.getBoundingClientRect();
+                const touch = e.touches[0];
+                card.style.setProperty('--mx', `${touch.clientX - rect.left}px`);
+                card.style.setProperty('--my', `${touch.clientY - rect.top}px`);
+            });
+        });
+
+        // Initial pill placement
         window.onload = () => updatePill(0);
     </script>
 </body>
 </html>
-
-            </a>
-            <a href="#contact" class="nav-item" data-index="3">
-                <i data-lucide="mail" size="22"></i>
-            </a>
-        </nav>
-    </div>
-
-    <main>
-        <!-- Kinetic Hero -->
-        <section id="home" class="min-h-screen flex flex-col justify-center px-6 pt-10 overflow-hidden">
-            <div class="reveal max-w-7xl mx-auto w-full mb-4">
-                <p class="text-[10px] font-bold uppercase tracking-[0.5em] text-white/30 mb-8 border-l-2 border-indigo-500 pl-4">Creative Archive 01</p>
-                <h1 class="font-clash hero-text">
-                    RAAJVI <br/>
-                    <span class="text-white/10 italic">RAJESH</span> RAJ
-                </h1>
-            </div>
-
-            <div class="marquee-wrapper font-clash">
-                <div class="marquee-content">
-                    <span>• VISUAL STORY • DIGITAL ART • CURATOR • WRITER •&nbsp;</span>
-                    <span>• VISUAL STORY • DIGITAL ART • CURATOR • WRITER •&nbsp;</span>
-                </div>
-            </div>
-
-            <div class="reveal mt-16 max-w-7xl mx-auto w-full flex flex-row items-center gap-6">
-                <div class="flex items-center gap-3">
-                    <span class="w-12 h-px bg-white/20"></span>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-white/40">Scroll to Dive</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Bento Grid -->
-        <section id="about" class="py-20 md:py-40 px-6 max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
-                
-                <!-- Large Bio -->
-                <div class="md:col-span-8 reveal">
-                    <div class="bento-card h-full flex flex-col justify-between">
-                        <div>
-                            <h2 class="font-clash text-4xl md:text-7xl font-semibold mb-8 leading-tight">Digital <br/> <span class="text-white/20">Curation.</span></h2>
-                            <p class="text-lg md:text-2xl text-white/50 leading-relaxed font-light max-w-2xl">
-                                I merge classical Arts with cutting-edge design. Based in Mumbai, I spend my time exploring the psychological impact of visual minimalism.
-                            </p>
-                        </div>
-                        <div class="mt-16 flex items-center gap-6">
-                            <span class="text-[10px] font-bold uppercase tracking-widest text-indigo-500">Currently in 12th Grade</span>
-                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Age Card -->
-                <div class="md:col-span-4 reveal" style="transition-delay: 100ms">
-                    <div class="bento-card h-full flex flex-col items-center justify-center text-center py-16 md:py-0">
-                        <span class="text-[90px] md:text-[130px] font-clash font-bold leading-none" id="age-val">16</span>
-                        <p class="text-[10px] uppercase tracking-[0.5em] text-white/30 -mt-1">Years Active</p>
-                    </div>
-                </div>
-
-                <!-- Arsenal -->
-                <div class="md:col-span-7 reveal" style="transition-delay: 200ms">
-                    <div class="bento-card">
-                        <h3 class="font-clash text-2xl mb-10 text-white/80">Capabilities</h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                            <div class="space-y-3">
-                                <h4 class="text-[9px] font-bold uppercase tracking-widest text-white/20 mb-4">The Tooling</h4>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1.5 bg-white/5 border border-white/5 rounded-lg text-xs font-medium">Canva Pro</span>
-                                    <span class="px-3 py-1.5 bg-white/5 border border-white/5 rounded-lg text-xs font-medium">Figma</span>
-                                    <span class="px-3 py-1.5 bg-white/5 border border-white/5 rounded-lg text-xs font-medium">CapCut</span>
-                                </div>
-                            </div>
-                            <div class="space-y-3">
-                                <h4 class="text-[9px] font-bold uppercase tracking-widest text-white/20 mb-4">The Talent</h4>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1.5 bg-white/5 border border-white/5 rounded-lg text-xs font-medium">Creative Writing</span>
-                                    <span class="px-3 py-1.5 bg-white/5 border border-white/5 rounded-lg text-xs font-medium">Visual Thinking</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Location -->
-                <div class="md:col-span-5 reveal" style="transition-delay: 300ms">
-                    <div class="bento-card relative min-h-[300px] flex flex-col justify-end group">
-                        <div class="absolute inset-0 grayscale opacity-10 transition-opacity bg-[url('https://images.unsplash.com/photo-1566552881560-0be862a7c445?q=80&w=800')] bg-cover bg-center"></div>
-                        <div class="relative z-10">
-                            <h3 class="text-3xl font-bold">Mumbai</h3>
-                            <p class="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em]">Maharashtra, India</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects -->
-        <section id="projects" class="py-20 md:py-40 px-6 max-w-7xl mx-auto">
-            <div class="reveal flex items-center gap-6 mb-16">
-                <h2 class="font-clash text-5xl md:text-8xl font-bold tracking-tight">WORKS</h2>
-                <div class="flex-grow h-px bg-white/10"></div>
-            </div>
-
-            <div class="space-y-6">
-                <div class="reveal bento-card p-6 md:p-8 group">
-                    <div class="flex flex-col md:flex-row gap-8 items-center">
-                        <div class="w-full md:w-1/2 aspect-video overflow-hidden rounded-2xl bg-white/5">
-                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0">
-                        </div>
-                        <div class="w-full md:w-1/2">
-                            <h3 class="text-4xl font-clash font-bold mb-4">Ethereal 01</h3>
-                            <p class="text-white/40 font-light text-lg mb-8">A curated collection of visual textures and lighting studies.</p>
-                            <button class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
-                                <i data-lucide="arrow-right" size="20"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact -->
-        <section id="contact" class="min-h-screen flex flex-col justify-center items-center text-center px-6 relative">
-            <div class="reveal">
-                <p class="text-[10px] uppercase tracking-[0.5em] text-white/30 mb-12">Start a conversation</p>
-                <h2 class="font-clash text-6xl md:text-[10vw] font-bold leading-none mb-16 tracking-tighter">
-                    WORK <br/> <span class="text-white/10 hover:text-white transition-colors cursor-pointer">WITH ME</span>
-                </h2>
-                <a href="mailto:hello@raajvi.com" class="text-2xl md:text-5xl border-b border-white/20 hover:border-white transition-all pb-3 font-light">hello@raajvi.com</a>
-            </div>
-
-            <div class="absolute bottom-10 w-full max-w-7xl px-6 flex flex-col md:flex-row justify-between items-center text-[9px] font-bold uppercase tracking-[0.3em] text-white/20">
-                <p>© 2025 RAAJVI RAJESH RAJ</p>
-                <div class="flex gap-10 mt-6 md:mt-0">
-                    <a href="#" class="hover:text-white transition-colors">INSTA</a>
-                    <a href="#" class="hover:text-white transition-colors">BEHANCE</a>
-                    <a href="#" class="hover:text-white transition-colors">LINKEDIN</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <script>
-        lucide.createIcons();
-
-        // 1. Interactive Elements Logic
-        const cursor = document.getElementById('cursor');
-        const spheres = [
-            document.getElementById('sphere-1'),
-            document.getElementById('sphere-2'),
-            document.getElementById('sphere-3')
-        ];
-        
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
-
-        const updateCoords = (x, y) => {
-            mouseX = x;
-            mouseY = y;
-            
-            spheres.forEach((s, i) => {
-                const moveMult = [0.03, -0.04, 0.02][i];
-                const tx = (x - window.innerWidth / 2) * moveMult;
-                const ty = (y - window.innerHeight / 2) * moveMult;
-                s.style.transform = `translate(${tx}px, ${ty}px)`;
-            });
-        };
-
-        window.addEventListener('mousemove', (e) => updateCoords(e.clientX, e.clientY));
-        window.addEventListener('touchmove', (e) => {
-            const touch = e.touches[0];
-            updateCoords(touch.clientX, touch.clientY);
-        });
-
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.15;
-            cursorY += (mouseY - cursorY) * 0.15;
-            if (cursor) cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        // 2. Navigation Pill Gooey logic
-        const navPill = document.getElementById('nav-pill');
-        const navItems = document.querySelectorAll('.nav-item');
-        
-        function movePill(index) {
-            const isMobile = window.innerWidth <= 640;
-            const pillSize = isMobile ? 50 : 56;
-            const gap = 6;
-            const offset = index * (pillSize + gap);
-            navPill.style.transform = `translateX(${offset}px)`;
-            navItems.forEach((item, i) => {
-                item.classList.toggle('active', i == index);
-            });
-        }
-
-        navItems.forEach((item, i) => {
-            item.addEventListener('click', () => movePill(i));
-        });
-
-        // 3. Scroll Spy for Nav
-        const sectionIds = ['home', 'about', 'projects', 'contact'];
-        window.addEventListener('scroll', () => {
-            let currentIdx = 0;
-            sectionIds.forEach((id, i) => {
-                const section = document.getElementById(id);
-                if (window.scrollY >= section.offsetTop - 300) {
-                    currentIdx = i;
-                }
-            });
-            movePill(currentIdx);
-        });
-
-        // 4. Reveal Animation
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-        // 5. Dynamic Age
-        const birthDate = new Date('2008-03-20');
-        const updateAge = () => {
-            const age = Math.floor((new Date() - birthDate) / (365.25 * 24 * 60 * 60 * 1000));
-            document.getElementById('age-val').innerText = age;
-        };
-        updateAge();
-    </script>
-</body>
-</html>
-
-        }
-
-        /* The Liquid Sheen/Reflection */
-        .glass-nav::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 50%;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.08), transparent);
-            border-radius: 40px 40px 0 0;
-            pointer-events: none;
-        }
-
-        .nav-item {
-            position: relative;
-            z-index: 2;
-            width: 54px;
-            height: 54px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255,255,255,0.4);
-            transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            border-radius: 50%;
-        }
-
-        .nav-item.active {
-            color: #fff;
-        }
-
-        /* The Liquid Slider (Physical Stretch Effect) */
-        .liquid-pill {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            height: 54px;
-            width: 54px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 27px;
-            z-index: 1;
-            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-            box-shadow: 0 0 20px var(--liquid-glow);
-        }
-
-        /* Glass Spotlights */
-        .spotlight-card {
-            position: relative;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 32px;
-            overflow: hidden;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .spotlight-card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-5px);
-        }
-
-        .spotlight-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(600px circle at var(--x) var(--y), rgba(255,255,255,0.06), transparent 40%);
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-
-        .spotlight-card:hover::before { opacity: 1; }
-
-        .text-glow {
-            text-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Marquee */
-        @keyframes marquee {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-        .animate-marquee { animation: marquee 30s linear infinite; }
-    </style>
-</head>
-<body>
-
-    <div class="noise-texture"></div>
-    
-    <div class="mesh-container">
-        <div class="mesh-gradient"></div>
-    </div>
-
-    <!-- Navigation -->
-    <div class="glass-nav-container">
-        <nav class="glass-nav" id="main-nav">
-            <div id="liquid-pill" class="liquid-pill"></div>
-            
-            <div class="nav-item active" onclick="scrollToSection('home', this)">
-                <i data-lucide="home" size="20"></i>
-            </div>
-            <div class="nav-item" onclick="scrollToSection('about', this)">
-                <i data-lucide="user" size="20"></i>
-            </div>
-            <div class="nav-item" onclick="scrollToSection('projects', this)">
-                <i data-lucide="layers" size="20"></i>
-            </div>
-            <div class="nav-item" onclick="scrollToSection('contact', this)">
-                <i data-lucide="mail" size="20"></i>
-            </div>
-        </nav>
-    </div>
-
-    <!-- Content -->
-    <main>
-        <!-- Hero -->
-        <section id="home" class="min-h-screen flex flex-col items-center justify-center px-6 relative">
-            <div class="reveal mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl">
-                <span class="w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_10px_#6366f1] animate-pulse"></span>
-                <span class="text-[10px] font-bold uppercase tracking-widest">Open for collaborations</span>
-            </div>
-
-            <h1 class="reveal font-clash text-7xl md:text-[140px] font-bold tracking-tighter leading-[0.9] text-center">
-                Raajvi <br/>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-300 to-indigo-400 text-glow">Rajesh Raj</span>
-            </h1>
-
-            <p class="reveal mt-12 text-lg md:text-xl text-white/50 max-w-xl text-center font-manrope">
-                Fusing <span class="text-white font-medium">Literature</span> with <span class="text-white font-medium">Digital Craft</span> to build immersive narratives.
-            </p>
-        </section>
-
-        <!-- Marquee -->
-        <div class="py-10 border-y border-white/5 bg-white/[0.02] backdrop-blur-sm overflow-hidden">
-            <div class="animate-marquee whitespace-nowrap flex gap-16 text-[11px] font-bold uppercase tracking-[0.5em] text-white/20">
-                <span>Visual Arts • Creative Writing • Student • Designer • Mumbai</span>
-                <span>Visual Arts • Creative Writing • Student • Designer • Mumbai</span>
-                <span>Visual Arts • Creative Writing • Student • Designer • Mumbai</span>
-            </div>
-        </div>
-
-        <!-- Bento Grid -->
-        <section id="about" class="py-32 px-6 max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Main Bio -->
-                <div class="md:col-span-2 reveal">
-                    <div class="spotlight-card p-12 h-full flex flex-col justify-between">
-                        <div class="max-w-xl">
-                            <h2 class="font-clash text-5xl font-bold mb-8">Hello, I'm Raajvi.</h2>
-                            <p class="text-xl text-white/60 leading-relaxed font-manrope">
-                                A <span id="age">16</span>-year-old creative soul currently exploring the vast landscapes of the 12th grade Arts stream. Based in Mumbai, I specialize in visual storytelling and digital curation.
-                            </p>
-                        </div>
-                        <div class="mt-16 flex gap-8">
-                            <a href="#contact" class="text-sm font-bold uppercase tracking-widest border-b-2 border-indigo-500 pb-1">Get in touch</a>
-                            <a href="#projects" class="text-sm font-bold uppercase tracking-widest text-white/40">View Work</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mumbai Card -->
-                <div class="reveal" style="transition-delay: 100ms">
-                    <div class="spotlight-card relative h-full min-h-[350px] flex flex-col items-center justify-center text-center overflow-hidden">
-                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1566552881560-0be862a7c445?q=80&w=800')] bg-cover bg-center grayscale opacity-10"></div>
-                        <div class="relative z-10 p-8">
-                            <div class="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6 border border-white/10">
-                                <i data-lucide="map-pin" class="text-indigo-400"></i>
-                            </div>
-                            <h3 class="text-3xl font-bold mb-2">Mumbai</h3>
-                            <p class="text-xs uppercase tracking-[0.3em] text-white/30">City of Dreams</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Education -->
-                <div class="reveal" style="transition-delay: 200ms">
-                    <div class="spotlight-card p-10 h-full">
-                        <div class="flex items-center gap-4 mb-10">
-                            <div class="p-3 bg-indigo-500/10 rounded-xl text-indigo-400 border border-indigo-500/20">
-                                <i data-lucide="graduation-cap"></i>
-                            </div>
-                            <h4 class="font-clash text-xl font-bold">Background</h4>
-                        </div>
-                        <div class="space-y-10 relative border-l border-white/10 pl-8 ml-3">
-                            <div class="relative">
-                                <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-indigo-500 shadow-[0_0_10px_#6366f1]"></div>
-                                <h5 class="font-bold text-white">SK Somaiya College</h5>
-                                <p class="text-indigo-400 text-xs font-bold mt-1">12TH STANDARD • ARTS</p>
-                            </div>
-                            <div class="opacity-40">
-                                <div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-white/20"></div>
-                                <h5 class="font-bold">Secondary School</h5>
-                                <p class="text-white/50 text-xs font-bold mt-1">CLASS OF 2024</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Skills -->
-                <div class="md:col-span-2 reveal" style="transition-delay: 300ms">
-                    <div class="spotlight-card p-10">
-                        <h4 class="font-clash text-xl font-bold mb-8">Technical Arsenal</h4>
-                        <div class="flex flex-wrap gap-4">
-                            <span class="px-6 py-3 rounded-2xl bg-white/5 border border-white/10 text-sm font-medium hover:border-indigo-500 transition-all cursor-default">Creative Writing</span>
-                            <span class="px-6 py-3 rounded-2xl bg-white/5 border border-white/10 text-sm font-medium hover:border-indigo-500 transition-all cursor-default">Visual Curation</span>
-                            <span class="px-6 py-3 rounded-2xl bg-white/5 border border-white/10 text-sm font-medium hover:border-indigo-500 transition-all cursor-default">Canva Pro</span>
-                            <span class="px-6 py-3 rounded-2xl bg-white/5 border border-white/10 text-sm font-medium hover:border-indigo-500 transition-all cursor-default">Figma</span>
-                            <span class="px-6 py-3 rounded-2xl bg-white/5 border border-white/10 text-sm font-medium hover:border-indigo-500 transition-all cursor-default">Critical Analysis</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects -->
-        <section id="projects" class="py-32 px-6 max-w-7xl mx-auto">
-            <div class="reveal flex items-end justify-between mb-20 border-b border-white/10 pb-8">
-                <h2 class="font-clash text-6xl font-bold">Selected Works</h2>
-                <p class="text-white/30 text-sm font-mono tracking-widest hidden md:block">01 / 03 PROJECTS</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="reveal group cursor-pointer">
-                    <div class="relative aspect-[4/5] overflow-hidden rounded-[40px] bg-white/5 border border-white/10">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-10 flex flex-col justify-end">
-                            <h3 class="text-3xl font-clash font-bold">Ethereal</h3>
-                            <p class="text-indigo-400 text-xs font-bold tracking-widest mt-2 uppercase">Visual Composition</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="reveal group cursor-pointer" style="transition-delay: 150ms">
-                    <div class="relative aspect-[4/5] overflow-hidden rounded-[40px] bg-white/5 border border-white/10">
-                        <img src="https://images.unsplash.com/photo-1493514789931-586cb221d7a7?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-10 flex flex-col justify-end">
-                            <h3 class="text-3xl font-clash font-bold">City Noir</h3>
-                            <p class="text-indigo-400 text-xs font-bold tracking-widest mt-2 uppercase">Literary Series</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="reveal group cursor-pointer" style="transition-delay: 300ms">
-                    <div class="relative aspect-[4/5] overflow-hidden rounded-[40px] bg-white/5 border border-white/10">
-                        <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-10 flex flex-col justify-end">
-                            <h3 class="text-3xl font-clash font-bold">Prism</h3>
-                            <p class="text-indigo-400 text-xs font-bold tracking-widest mt-2 uppercase">Brand Concept</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <section id="contact" class="py-60 px-6 text-center">
-            <h2 class="reveal font-clash text-6xl md:text-9xl font-bold mb-16 tracking-tighter leading-tight">
-                Let's build a <br/> <span class="italic text-indigo-500">masterpiece.</span>
-            </h2>
-            <a href="mailto:hello@raajvi.com" class="reveal inline-flex items-center gap-6 bg-white text-black px-16 py-8 rounded-full font-bold text-2xl hover:scale-105 transition-all shadow-2xl">
-                Get in touch <i data-lucide="arrow-right"></i>
-            </a>
-            
-            <div class="mt-40 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-white/20 text-[10px] font-bold tracking-[0.3em] uppercase">
-                <p>© 2025 RAAJVI RAJESH RAJ</p>
-                <div class="flex gap-12 mt-8 md:mt-0">
-                    <a href="#" class="hover:text-white transition-colors">Instagram</a>
-                    <a href="#" class="hover:text-white transition-colors">Behance</a>
-                    <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <script>
-        lucide.createIcons();
-
-        // 1. Reveal Elements
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // 2. Spotlight Logic
-        window.addEventListener('mousemove', e => {
-            document.querySelectorAll('.spotlight-card').forEach(card => {
-                const rect = card.getBoundingClientRect();
-                card.style.setProperty('--x', `${e.clientX - rect.left}px`);
-                card.style.setProperty('--y', `${e.clientY - rect.top}px`);
-            });
-        });
-
-        // 3. Physical Liquid Navigation Logic
-        const pill = document.getElementById('liquid-pill');
-        const navItems = document.querySelectorAll('.nav-item');
-        let currentActive = document.querySelector('.nav-item.active');
-
-        function updatePill(target) {
-            const rect = target.getBoundingClientRect();
-            const parentRect = target.parentElement.getBoundingClientRect();
-            const left = rect.left - parentRect.left;
-            
-            // Squash and Stretch Logic
-            const distance = Math.abs(left - (parseFloat(pill.style.left) || 8));
-            const scaleX = 1 + (distance / 200); // Stretch based on distance
-            const scaleY = 1 - (distance / 400); // Squash the height
-            
-            pill.style.left = `${left}px`;
-            pill.style.transform = `scaleX(${Math.min(scaleX, 1.5)}) scaleY(${Math.max(scaleY, 0.8)})`;
-            
-            // Reset stretch after move
-            setTimeout(() => {
-                pill.style.transform = `scale(1)`;
-            }, 400);
-
-            navItems.forEach(i => i.classList.remove('active'));
-            target.classList.add('active');
-        }
-
-        function scrollToSection(id, element) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-            updatePill(element);
-        }
-
-        // 4. Scroll Spy for Nav
-        window.addEventListener('scroll', () => {
-            const sections = ['home', 'about', 'projects', 'contact'];
-            let current = 'home';
-            
-            sections.forEach(id => {
-                const sec = document.getElementById(id);
-                if (window.scrollY >= sec.offsetTop - 300) current = id;
-            });
-
-            const targetNav = document.querySelector(`.nav-item[onclick*="${current}"]`);
-            if (targetNav && targetNav !== currentActive) {
-                currentActive = targetNav;
-                updatePill(targetNav);
-            }
-        });
-
-        // 5. Age
-        const birth = new Date('2008-03-20');
-        const age = Math.floor((new Date() - birth) / (365.25 * 24 * 60 * 60 * 1000));
-        document.getElementById('age').innerText = age;
-    </script>
-</body>
-</html>
-
 
