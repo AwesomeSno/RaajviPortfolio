@@ -2,92 +2,466 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raajvi Rajesh Raj | Creative Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Raajvi • Creative Director</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #6366f1;
-            --secondary: #a855f7;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --liquid-glow: rgba(99, 102, 241, 0.4);
+            --bg: #030303;
+            --primary: #5A00FF;
+            --accent: #FF00E5;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+            --pill-size: 56px;
+        }
+
+        @media (max-width: 640px) {
+            :root { --pill-size: 50px; }
         }
 
         body {
-            background: #03040a;
+            background-color: var(--bg);
             color: #fff;
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
-            margin: 0;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .font-clash { font-family: 'Clash Display', sans-serif; }
 
-        /* --- HIGH-END MOVING MESH BACKGROUND --- */
-        .mesh-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: #03040a;
-            filter: blur(80px);
-            opacity: 0.6;
-        }
-
-        .mesh-gradient {
-            position: absolute;
-            width: 150%;
-            height: 150%;
-            top: -25%;
-            left: -25%;
-            background-image: 
-                radial-gradient(circle at 20% 30%, #4f46e5 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, #7c3aed 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, #2563eb 0%, transparent 50%),
-                radial-gradient(circle at 90% 90%, #9333ea 0%, transparent 50%);
-            animation: mesh-morph 20s infinite alternate ease-in-out;
-        }
-
-        @keyframes mesh-morph {
-            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-            33% { transform: translate(5%, -5%) scale(1.1) rotate(5deg); }
-            66% { transform: translate(-5%, 8%) scale(0.9) rotate(-3deg); }
-            100% { transform: translate(2%, 2%) scale(1.05) rotate(2deg); }
-        }
-
-        .noise-texture {
+        /* --- INTERACTIVE FLUID BACKGROUND --- */
+        .liquid-bg {
             position: fixed;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 10;
+            z-index: -1;
+            background: #000;
+            overflow: hidden;
         }
 
-        /* --- LIQUID GLASS NAVIGATION --- */
-        .glass-nav-container {
+        .mesh-sphere {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            mix-blend-mode: screen;
+            transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+        }
+
+        .sphere-1 { width: 90vw; height: 90vw; background: var(--primary); top: -10%; left: -10%; }
+        .sphere-2 { width: 80vw; height: 80vw; background: var(--accent); bottom: -10%; right: -10%; }
+        .sphere-3 { width: 50vw; height: 50vw; background: #00D1FF; top: 30%; right: -5%; opacity: 0.1; }
+
+        .noise {
             position: fixed;
-            bottom: 30px;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        /* --- REFINED LIQUID NAVIGATION DOCK --- */
+        .nav-dock-container {
+            position: fixed;
+            bottom: max(30px, env(safe-area-inset-bottom));
             left: 50%;
             transform: translateX(-50%);
-            z-index: 100;
+            z-index: 999;
+            /* Using a cleaner gooey filter approach */
+            filter: url('#refined-goo');
+            padding: 10px;
         }
 
-        .glass-nav {
-            position: relative;
+        .nav-dock {
             display: flex;
             align-items: center;
-            padding: 8px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(24px) saturate(180%);
-            -webkit-backdrop-filter: blur(24px) saturate(180%);
-            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 6px;
             border-radius: 40px;
-            box-shadow: 
-                0 20px 40px rgba(0,0,0,0.4),
-                inset 0 0 0 1px rgba(255,255,255,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            gap: 6px;
+            position: relative;
+        }
+
+        .nav-item {
+            position: relative;
+            width: var(--pill-size);
+            height: var(--pill-size);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.4);
+            z-index: 10;
+            transition: color 0.4s ease;
+        }
+
+        .nav-item.active { color: #000; }
+
+        .nav-pill {
+            position: absolute;
+            height: var(--pill-size);
+            width: var(--pill-size);
+            background: #fff;
+            border-radius: 50%;
+            left: 6px;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 5;
+            box-shadow: 0 4px 12px rgba(255,255,255,0.25);
+        }
+
+        /* SVG Filter for Gooey Effect */
+        .gooey-svg {
+            position: absolute;
+            width: 0; height: 0;
+            pointer-events: none;
+        }
+
+        /* --- CURSOR (DESKTOP) --- */
+        #cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s linear;
+            mix-blend-mode: difference;
+        }
+
+        @media (pointer: coarse) { #cursor { display: none; } }
+
+        /* --- HERO & BENTO --- */
+        .hero-text {
+            font-size: clamp(3.2rem, 15vw, 12rem);
+            line-height: 0.82;
+            letter-spacing: -0.06em;
+            font-weight: 700;
+        }
+
+        .marquee-wrapper {
+            white-space: nowrap;
+            display: flex;
+            overflow: hidden;
+            font-weight: 800;
+            font-size: clamp(2.8rem, 12vw, 14vw);
+            line-height: 1;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .marquee-content {
+            display: flex;
+            animation: marquee 35s linear infinite;
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .bento-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 32px;
+            padding: 28px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hide scrollbar */
+        ::-webkit-scrollbar { display: none; }
+        * { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="selection:bg-white selection:text-black">
+
+    <div id="cursor"></div>
+    <div class="noise"></div>
+    
+    <div class="liquid-bg">
+        <div class="mesh-sphere sphere-1" id="sphere-1"></div>
+        <div class="mesh-sphere sphere-2" id="sphere-2"></div>
+        <div class="mesh-sphere sphere-3" id="sphere-3"></div>
+    </div>
+
+    <!-- Corrected SVG Filter -->
+    <svg class="gooey-svg" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <filter id="refined-goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Liquid Glass Navigation -->
+    <div class="nav-dock-container">
+        <nav class="nav-dock" id="nav-dock">
+            <div id="nav-pill" class="nav-pill"></div>
+            <a href="#home" class="nav-item active" data-index="0">
+                <i data-lucide="home" size="22"></i>
+            </a>
+            <a href="#about" class="nav-item" data-index="1">
+                <i data-lucide="user" size="22"></i>
+            </a>
+            <a href="#projects" class="nav-item" data-index="2">
+                <i data-lucide="layers" size="22"></i>
+            </a>
+            <a href="#contact" class="nav-item" data-index="3">
+                <i data-lucide="mail" size="22"></i>
+            </a>
+        </nav>
+    </div>
+
+    <main>
+        <!-- Kinetic Hero -->
+        <section id="home" class="min-h-screen flex flex-col justify-center px-6 pt-10 overflow-hidden">
+            <div class="reveal max-w-7xl mx-auto w-full mb-4">
+                <p class="text-[10px] font-bold uppercase tracking-[0.5em] text-white/30 mb-8 border-l-2 border-indigo-500 pl-4">Creative Archive 01</p>
+                <h1 class="font-clash hero-text">
+                    RAAJVI <br/>
+                    <span class="text-white/10 italic">RAJESH</span> RAJ
+                </h1>
+            </div>
+
+            <div class="marquee-wrapper font-clash">
+                <div class="marquee-content">
+                    <span>• VISUAL STORY • DIGITAL ART • CURATOR • WRITER •&nbsp;</span>
+                    <span>• VISUAL STORY • DIGITAL ART • CURATOR • WRITER •&nbsp;</span>
+                </div>
+            </div>
+
+            <div class="reveal mt-16 max-w-7xl mx-auto w-full flex flex-row items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <span class="w-12 h-px bg-white/20"></span>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-white/40">Scroll to Dive</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bento Grid -->
+        <section id="about" class="py-20 md:py-40 px-6 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+                
+                <!-- Large Bio -->
+                <div class="md:col-span-8 reveal">
+                    <div class="bento-card h-full flex flex-col justify-between">
+                        <div>
+                            <h2 class="font-clash text-4xl md:text-7xl font-semibold mb-8 leading-tight">Digital <br/> <span class="text-white/20">Curation.</span></h2>
+                            <p class="text-lg md:text-2xl text-white/50 leading-relaxed font-light max-w-2xl">
+                                I merge classical Arts with cutting-edge design. Based in Mumbai, I spend my time exploring the psychological impact of visual minimalism.
+                            </p>
+                        </div>
+                        <div class="mt-16 flex items-center gap-6">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-indigo-500">Currently in 12th Grade</span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Age Card -->
+                <div class="md:col-span-4 reveal" style="transition-delay: 100ms">
+                    <div class="bento-card h-full flex flex-col items-center justify-center text-center py-16 md:py-0">
+                        <span class="text-[90px] md:text-[130px] font-clash font-bold leading-none" id="age-val">16</span>
+                        <p class="text-[10px] uppercase tracking-[0.5em] text-white/30 -mt-1">Years Active</p>
+                    </div>
+                </div>
+
+                <!-- Arsenal -->
+                <div class="md:col-span-7 reveal" style="transition-delay: 200ms">
+                    <div class="bento-card">
+                        <h3 class="font-clash text-2xl mb-10 text-white/80">Capabilities</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                            <div class="space-y-3">
+                                <h4 class="text-[9px] font-bold uppercase tracking-widest text-white/20 mb-4">The Tooling</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1.5 bg-white/5 border border-white/5 rounded-lg text-xs font-medium">Canva Pro</span>
+                                    <span class="px-3 py-1.5 bg-white/5 border border-white/5 rounded-lg text-xs font-medium">Figma</span>
+                                    <span class="px-3 py-1.5 bg-white/5 border border-white/5 rounded-lg text-xs font-medium">CapCut</span>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <h4 class="text-[9px] font-bold uppercase tracking-widest text-white/20 mb-4">The Talent</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1.5 bg-white/5 border border-white/5 rounded-lg text-xs font-medium">Creative Writing</span>
+                                    <span class="px-3 py-1.5 bg-white/5 border border-white/5 rounded-lg text-xs font-medium">Visual Thinking</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="md:col-span-5 reveal" style="transition-delay: 300ms">
+                    <div class="bento-card relative min-h-[300px] flex flex-col justify-end group">
+                        <div class="absolute inset-0 grayscale opacity-10 transition-opacity bg-[url('https://images.unsplash.com/photo-1566552881560-0be862a7c445?q=80&w=800')] bg-cover bg-center"></div>
+                        <div class="relative z-10">
+                            <h3 class="text-3xl font-bold">Mumbai</h3>
+                            <p class="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em]">Maharashtra, India</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="py-20 md:py-40 px-6 max-w-7xl mx-auto">
+            <div class="reveal flex items-center gap-6 mb-16">
+                <h2 class="font-clash text-5xl md:text-8xl font-bold tracking-tight">WORKS</h2>
+                <div class="flex-grow h-px bg-white/10"></div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="reveal bento-card p-6 md:p-8 group">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="w-full md:w-1/2 aspect-video overflow-hidden rounded-2xl bg-white/5">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0">
+                        </div>
+                        <div class="w-full md:w-1/2">
+                            <h3 class="text-4xl font-clash font-bold mb-4">Ethereal 01</h3>
+                            <p class="text-white/40 font-light text-lg mb-8">A curated collection of visual textures and lighting studies.</p>
+                            <button class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                                <i data-lucide="arrow-right" size="20"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="min-h-screen flex flex-col justify-center items-center text-center px-6 relative">
+            <div class="reveal">
+                <p class="text-[10px] uppercase tracking-[0.5em] text-white/30 mb-12">Start a conversation</p>
+                <h2 class="font-clash text-6xl md:text-[10vw] font-bold leading-none mb-16 tracking-tighter">
+                    WORK <br/> <span class="text-white/10 hover:text-white transition-colors cursor-pointer">WITH ME</span>
+                </h2>
+                <a href="mailto:hello@raajvi.com" class="text-2xl md:text-5xl border-b border-white/20 hover:border-white transition-all pb-3 font-light">hello@raajvi.com</a>
+            </div>
+
+            <div class="absolute bottom-10 w-full max-w-7xl px-6 flex flex-col md:flex-row justify-between items-center text-[9px] font-bold uppercase tracking-[0.3em] text-white/20">
+                <p>© 2025 RAAJVI RAJESH RAJ</p>
+                <div class="flex gap-10 mt-6 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">INSTA</a>
+                    <a href="#" class="hover:text-white transition-colors">BEHANCE</a>
+                    <a href="#" class="hover:text-white transition-colors">LINKEDIN</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        // 1. Interactive Elements Logic
+        const cursor = document.getElementById('cursor');
+        const spheres = [
+            document.getElementById('sphere-1'),
+            document.getElementById('sphere-2'),
+            document.getElementById('sphere-3')
+        ];
+        
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        const updateCoords = (x, y) => {
+            mouseX = x;
+            mouseY = y;
+            
+            spheres.forEach((s, i) => {
+                const moveMult = [0.03, -0.04, 0.02][i];
+                const tx = (x - window.innerWidth / 2) * moveMult;
+                const ty = (y - window.innerHeight / 2) * moveMult;
+                s.style.transform = `translate(${tx}px, ${ty}px)`;
+            });
+        };
+
+        window.addEventListener('mousemove', (e) => updateCoords(e.clientX, e.clientY));
+        window.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            updateCoords(touch.clientX, touch.clientY);
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            if (cursor) cursor.style.transform = `translate(${cursorX - 10}px, ${cursorY - 10}px)`;
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // 2. Navigation Pill Gooey logic
+        const navPill = document.getElementById('nav-pill');
+        const navItems = document.querySelectorAll('.nav-item');
+        
+        function movePill(index) {
+            const isMobile = window.innerWidth <= 640;
+            const pillSize = isMobile ? 50 : 56;
+            const gap = 6;
+            const offset = index * (pillSize + gap);
+            navPill.style.transform = `translateX(${offset}px)`;
+            navItems.forEach((item, i) => {
+                item.classList.toggle('active', i == index);
+            });
+        }
+
+        navItems.forEach((item, i) => {
+            item.addEventListener('click', () => movePill(i));
+        });
+
+        // 3. Scroll Spy for Nav
+        const sectionIds = ['home', 'about', 'projects', 'contact'];
+        window.addEventListener('scroll', () => {
+            let currentIdx = 0;
+            sectionIds.forEach((id, i) => {
+                const section = document.getElementById(id);
+                if (window.scrollY >= section.offsetTop - 300) {
+                    currentIdx = i;
+                }
+            });
+            movePill(currentIdx);
+        });
+
+        // 4. Reveal Animation
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // 5. Dynamic Age
+        const birthDate = new Date('2008-03-20');
+        const updateAge = () => {
+            const age = Math.floor((new Date() - birthDate) / (365.25 * 24 * 60 * 60 * 1000));
+            document.getElementById('age-val').innerText = age;
+        };
+        updateAge();
+    </script>
+</body>
+</html>
+
         }
 
         /* The Liquid Sheen/Reflection */
